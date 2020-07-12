@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget
       title: 'Dark Moon Crow',
       theme: ThemeData(
         fontFamily: 'overpass',
+        primaryIconTheme: IconThemeData(color: Colors.black),
         //visualDensity: VisualDensity.adaptivePlatformDensity,
         //focusColor: Colors.black,
       ),
