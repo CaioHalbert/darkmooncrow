@@ -7,6 +7,21 @@ import 'package:darkmooncrow/pages/sobre.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+Blog isAu;
+
+bool isAuth = false;
+
+//função que chama o login
+login() {
+  googleSignIn.signIn();
+}
+
+//função para logout
+logout() {
+  googleSignIn.signOut();
+}
+
+
 Drawer mobile(context) {
   return Drawer(
     child: ListView(
@@ -50,6 +65,12 @@ Drawer mobile(context) {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Contato()));
             }),
+        ListTile(
+            leading:
+                isAuth ? Icon(Icons.arrow_back) : Icon(Icons.arrow_forward),
+            title: isAuth ? Text('Sair') : Text('Login'),
+            onTap: () => {isAuth ? logout : Navigator.push(
+                context, MaterialPageRoute(builder: (context) => UnauthScreen()))},)
       ],
     ),
   );
@@ -131,4 +152,87 @@ AppBar deskTablet(context) {
       ],
     ),
   );
+}
+
+class UnauthScreen extends StatefulWidget {
+  UnauthScreen({Key key}) : super(key: key);
+
+  @override
+  _UnauthScreenState createState() => _UnauthScreenState();
+}
+
+class _UnauthScreenState extends State<UnauthScreen> {
+
+  Scaffold buildUnauthScreen() {
+  return Scaffold(
+    body: Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage('assets/images/Home.png'), fit: BoxFit.cover),
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [
+            Colors.white,
+            Colors.red,
+          ],
+        ),
+      ),
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            "DARKMOONCROW",
+            style: TextStyle(
+              shadows: [
+                Shadow(
+                    // bottomLeft
+                    offset: Offset(0.0, 0.0),
+                    color: Colors.black),
+                Shadow(
+                    // bottomRight
+                    offset: Offset(5.5, -1.5),
+                    color: Colors.black),
+              ],
+              fontFamily: "Lora",
+              fontSize: 90.0,
+              color: Colors.white,
+            ),
+          ),
+          Container(
+            height: 250.0,
+            width: 250.0,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  // vertical, move down 10
+                  image: AssetImage('assets/images/logon.png'),
+                  fit: BoxFit.cover),
+            ),
+          ),
+          GestureDetector(
+            onTap: login,
+            child: Container(
+              width: 260.0,
+              height: 60.0,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/google_signin_button.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+       child: buildUnauthScreen(),
+    );
+  }
 }

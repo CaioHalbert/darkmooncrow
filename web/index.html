@@ -18,6 +18,28 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAf7KsEvDKJZhWEg6-DJRoBTRWRB3phUv4",
+    authDomain: "darkmooncrow.firebaseapp.com",
+    databaseURL: "https://darkmooncrow.firebaseio.com",
+    projectId: "darkmooncrow",
+    storageBucket: "darkmooncrow.appspot.com",
+    messagingSenderId: "725627807870",
+    appId: "1:725627807870:web:5ddb93e8c15d6c4c9a502f",
+    measurementId: "G-H7PCW9KP9S"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
   <!-- referencia para uso do firebase-->
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="/__/firebase/7.15.5/firebase-app.js"></script>
